@@ -15,8 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', [ProductController::class, 'index']);
-Route::post('/products', [ProductController::class, 'store']);
+// routing to each api end point function separately
+// Route::get('/products', [ProductController::class, 'index']);
+// Route::post('/products', [ProductController::class, 'store']);
+
+// routing to a basic CRUD controller end points at once
+Route::resource('products', ProductController::class);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
