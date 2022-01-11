@@ -21,3 +21,7 @@
 # Homestead.json
 # /.vagrant
 # .phpunit.result.cache
+Codes/laravel-restapi/vendor/composer/autoload_classmap.php
+Codes/laravel-restapi/vendor/composer/autoload_files.php
+Codes/laravel-restapi/vendor/composer/autoload_psr4.php
+Codes/laravel-restapi/vendor/composer/autoload_static.php
