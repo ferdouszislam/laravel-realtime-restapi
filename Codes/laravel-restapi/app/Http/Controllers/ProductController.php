@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -14,6 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        Log::channel('custom_log_channel')->info("ProductController index() called");
+
         return Product::all();
     }
 
