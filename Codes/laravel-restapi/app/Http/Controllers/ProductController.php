@@ -28,6 +28,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        Log::channel('custom_log_channel')->info(
+            "ProductController.store() invoked by user: ". auth()->user()->name
+        );
 
         $request->validate([
             'name' => 'required',
@@ -58,6 +61,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Log::channel('custom_log_channel')->info(
+            "ProductController.update() invoked by user: ". auth()->user()->name
+        );
+
         $product = Product::find($id);
         $product->update($request->all());
 
@@ -72,6 +79,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        Log::channel('custom_log_channel')->info(
+            "ProductController.destroy() invoked by user: ". auth()->user()->name
+        );
+
         return Product::destroy($id);
     }
 
