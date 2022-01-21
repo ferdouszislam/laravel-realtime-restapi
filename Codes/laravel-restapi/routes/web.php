@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('messages', 'App\Http\Controllers\MessagesController@index');
+Route::post('messages', 'App\Http\Controllers\MessagesController@sendMessage');
