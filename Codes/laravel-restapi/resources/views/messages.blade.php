@@ -48,7 +48,7 @@
       function postMessageToBackend(message) {
         $.post("messages", {
           "_token": "{{ csrf_token() }}",
-          "message": message 
+          "content": message 
         }).fail(function() {
           alert("Error occurred during sending the data. Please retry again later.");
         })
