@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     // ui
     private TextView MessageTV;
 
+    // data
+    private Message lastMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,21 +85,25 @@ public class MainActivity extends AppCompatActivity {
         // Todo: parse args object through a model class
         //  instead of hardcoding here
 
-        String message = "No messages receiived";
+        lastMessage = new Message();
+        lastMessage.setContent("No messages received");
+        //String message = "No messages received";
 
         try {
-            JSONObject messageJson = new JSONObject(args[1].toString());
-            message = messageJson.getString("message");
-            Log.d(TAG, "displayMessage: message received = "+message);
+            JSONObject messageJson = new JSONObject(args[1].toString()).getJSONObject("message");
+
+            lastMessage = Message.parseFromJson(messageJson);
+
+            Log.d(TAG, "displayMessage: message received = "+lastMessage.toString());
         } catch (JSONException e) {
 
             Log.d(TAG, "displayMessage: error parsing json = "+e.getMessage());
         }
 
         if(MessageTV.getText().toString().equals("No messages received")){
-            MessageTV.setText(message);
+            MessageTV.setText(lastMessage.getContent());
         }
-        else MessageTV.setText(MessageTV.getText().toString()+"\n"+message);
+        else MessageTV.setText(MessageTV.getText().toString()+"\n"+lastMessage.getContent());
     }
 
     private Echo setupEcho() {
